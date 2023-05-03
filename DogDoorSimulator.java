@@ -1,6 +1,3 @@
-import java.util.Timer;
-import java.util.TimerTask;
-
 public class DogDoorSimulator {
 
    public static void main(String[] args) {
@@ -8,30 +5,21 @@ public class DogDoorSimulator {
     Remote rem = new Remote(door);
     System.out.println("Fido barks to go outside" + door.isOpen());
     rem.pressButton();
-    System.out.println("Door opens and fido is gone" + door.isOpen());
-    System.out.println("Within 5 sec fido is back at door to get back in ");
-        System.out.println("Door still remains open to let fido in " + door.isOpen());
+    System.out.println("Fido is all done");
 
-    final Timer timer = new Timer(); 
-    timer.schedule(new TimerTask() {
-        public void run(){
-            door.close();
-            System.out.println("Door closed automatically after 5 sec" + door.isOpen());    
-            timer.cancel();
-        }
-    }, 5000);
+    try{
+
+        Thread.currentThread();
+        Thread.sleep(10000);
+    } catch(InterruptedException e){}
+
+    System.out.println("Fido stuck outside and barks");
+    System.out.println("Gina hears and presses remote");
+    rem.pressButton();
+    System.out.println("Fids is back inside");
+
    
-
-           System.out.println("Fido is out , press to open door" + door.isOpen());
-           rem.pressButton();
-           System.out.println("Door opens and fido is in" + door.isOpen());
-           timer.schedule(new TimerTask() {
-            public void run(){
-                door.close();
-                System.out.println("Door closed automatically after 5 sec" + door.isOpen());    
-                timer.cancel();
-            }
-        }, 5000);
+       
 
 
     }
